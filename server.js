@@ -15,26 +15,34 @@ var thumbs = [
   { 
   	w: 800, 
   	h: 800, 
-  	path: path.join(inputImg.imgPath, '/fullsize', inputImg.imgName) 
+  	path: '/fullsize' 
   },
   { 
   	w: 400, 
   	h: 400, 
-  	path: path.join(inputImg.imgPath, '/normal', inputImg.imgName) 
+  	path: '/normal' 
   },
   { 
   	w: 128, 
   	h: 128, 
-  	path: path.join(inputImg.imgPath, '/small', inputImg.imgName) 
+  	path: '/small'
   },
   //Следващите размери ще са за квадратни thumbnail-и
   { 
   	w: 75,  
   	h: 75,  
-  	path: path.join(inputImg.imgPath, '/xsmall', inputImg.imgName) 
+  	path: '/xsmall' 
   }
 ]
 
+/*
+function(images) {
+  console.log("processing : " + images.length + " image(s)");
+  images.forEach(function (image, imageIndex) {
+  
+  })
+}
+*/
 gm(inputImgPath).format(function(err, value){
   if (value == 'JPEG') {
     gm(inputImgPath)
@@ -44,7 +52,7 @@ gm(inputImgPath).format(function(err, value){
       for (var i = 0; i < 3; i++) {
       gm(stdout) // gm can read buffers ;)
       .resize(thumbs[i].w)
-      .write(thumbs[i].path, function (err, size) {
+      .write(path.join(inputImg.imgPath, thumbs[i].path, inputImg.imgName), function (err, size) {
         if (err) console.log('Error - ', error);
         console.log('Created an image!');
       });
@@ -54,7 +62,7 @@ gm(inputImgPath).format(function(err, value){
       .resize(thumbs[2].w, thumbs[2].h + ">")
       .gravity('Center')
       .extent(thumbs[3].w, thumbs[3].h)
-      .write(thumbs[i].path, function (err, size) {
+      .write(path.join(inputImg.imgPath, thumbs[i].path, inputImg.imgName), function (err, size) {
         if (err) console.log('Error - ', error);
         console.log('Created an image!');
       });
