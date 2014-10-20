@@ -13,25 +13,25 @@ var inputImgPath = path.join(inputImg.imgPath, inputImg.rawImgPath, inputImg.img
 
 var strategies = {
   fullsize: {
-  	w: 800,
-  	h: 800,
-  	path: '/fullsize'
+    w: 800,
+    h: 800,
+    path: '/fullsize'
   },
   normal : {
-  	w: 400,
-  	h: 400,
-  	path: '/normal'
+    w: 400,
+    h: 400,
+    path: '/normal'
   },
   small : {
-  	w: 128,
-  	h: 128,
-  	path: '/small'
+    w: 128,
+    h: 128,
+    path: '/small'
   },
   //Следващите размери ще са за квадратни thumbnail-и
   xsmall : {
-  	w: 75,
-  	h: 75,
-  	path: '/xsmall'
+    w: 75,
+    h: 75,
+    path: '/xsmall'
   }
 }
 
@@ -45,14 +45,14 @@ function processImage(inputImgPath, imgName) {
         // before Resize the width is 1024px
           for (key in strategies) {
             switch (key) {
-                default:
-                  gm(stdout) // gm can read buffers ;)
-                  .resize(strategies[key].w)
-                  .write(path.join(inputImg.imgPath, strategies[key].path, imgName), function (err, size) {
-                    if (err) console.log('Error - ', error);
-                    console.log('Created an image!');
-                  });
-                  break;
+              default:
+                gm(stdout) // gm can read buffers ;)
+                .resize(strategies[key].w)
+                .write(path.join(inputImg.imgPath, strategies[key].path, imgName), function (err, size) {
+                  if (err) console.log('Error - ', error);
+                  console.log('Created an image!');
+                });
+                break;
                 case "xsmall":
                   gm(stdout) // gm can read buffers
                   .resize(strategies["small"].w, strategies["small"].h + ">")
@@ -63,9 +63,9 @@ function processImage(inputImgPath, imgName) {
                     console.log('Created an image!');
                   });
                   break;
-            }
-          };
-        });
+                }
+              };
+            });
       } else {
         console.log('Image is not JPEG');
       }
