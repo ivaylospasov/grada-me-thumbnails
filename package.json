@@ -10,8 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "easyimage": "^1.0.2",
-    "express": "^4.9.4",
     "gm": "^1.16.0"
   }
 }
